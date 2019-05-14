@@ -2,7 +2,8 @@
 """Django's command-line utility for administrative tasks."""
 import os
 import sys
-
+# Django自带命令行工具
+# 操作DJango项目
 
 def main():
     os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'demo1.settings')

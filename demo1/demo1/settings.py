@@ -8,6 +8,9 @@ https://docs.djangoproject.com/en/2.2/topics/settings/
 
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/2.2/ref/settings/
+
+项目配置文件
+
 """
 
 import os
@@ -30,6 +33,7 @@ ALLOWED_HOSTS = []
 
 # Application definition
 
+# 注册app
 INSTALLED_APPS = [
     'django.contrib.admin',
     'django.contrib.auth',
@@ -37,6 +41,8 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    # 需要和应用名一致
+    'booktest',
 ]
 
 MIDDLEWARE = [
@@ -74,6 +80,7 @@ WSGI_APPLICATION = 'demo1.wsgi.application'
 # https://docs.djangoproject.com/en/2.2/ref/settings/#databases
 
 DATABASES = {
+    # Django默认sqlite3 文件数据库
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
         'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
