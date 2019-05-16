@@ -57,3 +57,19 @@ def deletehero(request,id):
     # 删除英雄
     hero.delete()
     return HttpResponseRedirect('/booktest/detail/%s/'%(bookid,))
+
+def addhero(request,id):
+    if request.method == "GET":
+        return render(request,'booktest/addhero.html',{"bookid":id})
+    elif request.method == "POST":
+        book = BookInfo.objects.get(pk=id)
+        hero = HeroInfo()
+        hero.name = request.POST['username']
+        value = request.POST['sex']
+        hero.gender = value
+        hero.skill = request.POST['skill']
+        hero.book = book
+        hero.save()
+
+        return HttpResponseRedirect('/booktest/detail/%s/'%(id,))
+

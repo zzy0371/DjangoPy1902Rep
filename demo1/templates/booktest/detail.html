@@ -20,7 +20,7 @@
                 {% empty %}
                     <li>没有角色</li>
                 {% endfor %}
-
+                <a href="{% url 'booktest:addhero' book.id %}">添加角色 </a>
             </ul>
         {% else %}
             没有书籍信息

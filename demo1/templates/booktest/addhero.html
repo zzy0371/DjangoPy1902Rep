@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>添加角色</title>
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+</head>
+<body>
+    <div class="container">
+
+        <h2>添加角色</h2>
+        <form action="{% url 'booktest:addhero' bookid %}" method="post">
+            {# 书id： <input type="text" disabled value="{{bookid}}"> #}
+            <br>
+            角色名: <input type="text" name="username">
+            <br>
+            性别： <input type="radio" name="sex" value="man">男 <input type="radio" name="sex" value="woman">女
+            <br>
+            绝招： <input type="text" name="skill">
+            <br>
+            <input type="submit" value="提交">
+        </form>
+
+
+    </div>
+
+
+</body>
+</html>
