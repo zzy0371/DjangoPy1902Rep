@@ -3,9 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <title>列表页</title>
+       <link rel="stylesheet" href="/static/css/main.css">
 </head>
 <body>
-    <h2>列表页</h2>
+    <div class="container">
+         <h2>列表页</h2>
     {% if allbook %}
 
         <ul>
@@ -27,5 +29,6 @@
     <br>
     {# <a href="/booktest/index/">返回首页</a> #}
     <a href="{% url 'booktest:index' %}">返回首页</a>
+    </div>
 </body>
 </html>

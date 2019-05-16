@@ -3,10 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <title>详情页</title>
+       <link rel="stylesheet" href="/static/css/main.css">
 </head>
 <body>
-    <h2>详情页</h2>
-    <br>
+    <div class="container">
+         <h2>详情页</h2>
     {% if book %}
     <h3>{{ book.title }}</h3>
     <ul>
@@ -24,5 +25,6 @@
     {% endif %}
 
     <a href="{% url 'booktest:list' %}">返回列表页</a>
+    </div>
 </body>
 </html>
