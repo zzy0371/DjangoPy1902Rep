@@ -8,6 +8,9 @@
     <h2>首页</h2>
     {{ username }}
     <br>
-    <a href="/booktest/list/">进入列表页</a>
+    {# <a href="/booktest/booktestlist/">进入列表页(注释掉了)</a> #}
+    <a href="{% url 'booktest:list' %}">进入列表页</a>
+
+
 </body>
 </html>

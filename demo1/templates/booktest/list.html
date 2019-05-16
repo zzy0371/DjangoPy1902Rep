@@ -10,7 +10,8 @@
 
         <ul>
             {% for book in allbook %}
-                <li><a href="/booktest/detail/{{book.id }}/"> {{book.title }} </a> </li>
+                {# <li><a href="/booktest/booktestdetail/{{book.id }}/"> {{book.title }}--{{book.pub_date}} </a> </li> #}
+                <li><a href="{% url 'booktest:detail' book.id %}"> {{book.title }}--{{book.pub_date}} </a> </li>
             {% empty %}
                 没有书籍信息
             {% endfor %}
@@ -24,6 +25,7 @@
 
 
     <br>
-    <a href="/booktest/index/">返回首页</a>
+    {# <a href="/booktest/index/">返回首页</a> #}
+    <a href="{% url 'booktest:index' %}">返回首页</a>
 </body>
 </html>

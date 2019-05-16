@@ -10,21 +10,24 @@ from .models import BookInfo,HeroInfo
 def index(request):
     # print(10/0)
     # return  HttpResponse("index首页")
-    # 1 加载模板
-    template = loader.get_template("booktest/index.html")
-    # 2 构造参数字典
-    contex = {"username":"zzy" }
-    # 3 使用模板渲染动态数据
-    result = template.render(contex)
-    return HttpResponse(result)
+    # # 1 加载模板
+    # template = loader.get_template("booktest/index.html")
+    # # 2 构造参数字典
+    # contex = {"username":"zzy" }
+    # # 3 使用模板渲染动态数据
+    # result = template.render(contex)
+    # return HttpResponse(result)
+    return render(request,'booktest/index.html',{"username":"zzy" })
 
 def list(request):
     # 查询所有的书籍
     allbook = BookInfo.objects.all()
 
-    templ = loader.get_template('booktest/list.html')
-    result = templ.render({"allbook": allbook  })
-    return HttpResponse(result)
+    # templ = loader.get_template('booktest/list.html')
+    # result = templ.render({"allbook": allbook  })
+    # return HttpResponse(result)
+
+    return render(request,'booktest/list.html',{"allbook": allbook })
 
 def detail(request,id):
     print(id)
@@ -35,6 +38,7 @@ def detail(request,id):
     except Exception as e:
         return HttpResponse("没有书籍信息")
 
-    templ = loader.get_template('booktest/detail.html')
-    result = templ.render({"book": book})
-    return HttpResponse(result)
+    # templ = loader.get_template('booktest/detail.html')
+    # result = templ.render({"book": book})
+    # return HttpResponse(result)
+    return render(request,'booktest/detail.html',{"book": book})
