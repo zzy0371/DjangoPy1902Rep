@@ -12,28 +12,24 @@
 </head>
 <body>
     <div class="container">
-         <h2>列表页</h2>
-    {% if allbook %}
+        <h2>列表页</h2>
+        {% if allbook %}
+            <ul>
+                {% for book in allbook %}
+                    {# <li><a href="/booktest/booktestdetail/{{book.id }}/"> {{book.title }}--{{book.pub_date}} </a> </li> #}
+                    <li><a href="{% url 'booktest:detail' book.id %}"> {{book.title }}--{{book.pub_date}} </a> <a
+                            href="{% url 'booktest:deletebook' book.id %}">删除</a>  </li>
+                {% empty %}
+                    没有书籍信息
+                {% endfor %}
+            </ul>
+        {% else %}
+            没有收到书籍信息
+        {% endif %}
 
-        <ul>
-            {% for book in allbook %}
-                {# <li><a href="/booktest/booktestdetail/{{book.id }}/"> {{book.title }}--{{book.pub_date}} </a> </li> #}
-                <li><a href="{% url 'booktest:detail' book.id %}"> {{book.title }}--{{book.pub_date}} </a> </li>
-            {% empty %}
-                没有书籍信息
-            {% endfor %}
-        </ul>
-
-
-    {% else %}
-        没有收到书籍信息
-    {% endif %}
-
-
-
-    <br>
-    {# <a href="/booktest/index/">返回首页</a> #}
-    <a href="{% url 'booktest:index' %}">返回首页</a>
+        <br>
+        {# <a href="/booktest/index/">返回首页</a> #}
+        <a href="{% url 'booktest:index' %}">返回首页</a>
     </div>
 </body>
 </html>

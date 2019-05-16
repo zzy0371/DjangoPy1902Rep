@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from django.http import HttpResponse
+from django.http import HttpResponse,HttpResponseRedirect
 from django.template import loader
 from .models import BookInfo,HeroInfo
 # Create your views here.
@@ -42,3 +42,18 @@ def detail(request,id):
     # result = templ.render({"book": book})
     # return HttpResponse(result)
     return render(request,'booktest/detail.html',{"book": book})
+
+def deletebook(request,id):
+    BookInfo.objects.get(pk=id).delete()
+    # return HttpResponse("success")
+    return HttpResponseRedirect('/booktest/list/')
+
+def deletehero(request,id):
+    # return HttpResponse("success")
+    # 通过角色id找到角色
+    hero = HeroInfo.objects.get(pk=id)
+    # 通过多对一关系找到书 的id
+    bookid = hero.book.id
+    # 删除英雄
+    hero.delete()
+    return HttpResponseRedirect('/booktest/detail/%s/'%(bookid,))

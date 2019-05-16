@@ -17,4 +17,7 @@ urlpatterns = [
     # url 参数 第一个代表正则表达式  第二个代表视图函数  第三个代表url名字
     url(r'^index/$',views.index,name="index"),
 
+    url(r'^deletebook/(\d+)/$', views.deletebook, name='deletebook'),
+    url(r'^deletehero/(\d+)/$',views.deletehero,name='deletehero'),
+
 ]

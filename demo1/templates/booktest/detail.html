@@ -11,24 +11,22 @@
 </head>
 <body>
     <div class="container">
-         <h2>详情页</h2>
-    {% if book %}
-    <h3>{{ book.title }}</h3>
-    <ul>
-        {% for hero in book.heroinfo_set.all %}
-            <li>{{ hero.name }}---{{ hero.gender }} -- {{ hero.skill }}</li>
-        {% empty %}
-            <li>没有角色</li>
-        {% endfor %}
+        <h2>详情页</h2>
+        {% if book %}
+            <h3>{{ book.title }}</h3>
+            <ul>
+                {% for hero in book.heroinfo_set.all %}
+                    <li>{{ hero.name }}---{{ hero.gender }} -- {{ hero.skill }} <a href="{% url 'booktest:deletehero' hero.id %}">删除</a></li>
+                {% empty %}
+                    <li>没有角色</li>
+                {% endfor %}
 
-    </ul>
+            </ul>
+        {% else %}
+            没有书籍信息
+        {% endif %}
 
-
-    {% else %}
-    没有书籍信息
-    {% endif %}
-
-    <a href="{% url 'booktest:list' %}">返回列表页</a>
+        <a href="{% url 'booktest:list' %}">返回列表页</a>
     </div>
 </body>
 </html>
