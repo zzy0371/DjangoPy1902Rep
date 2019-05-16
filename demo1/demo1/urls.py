@@ -17,8 +17,18 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
+# 引入url函数
+from django.conf.urls import url,include
+from django.http import HttpResponse
 
+
+# 项目路由  所有浏览器的请求先进入项目路由
 urlpatterns = [
     #  http://127.0.0.1:8000/admin/
+
     path('admin/', admin.site.urls),
+    # 引入外部路由配置文件
+    # 会截取url中booktest字符串
+    url('booktest/', include('booktest.urls'))
+
 ]
