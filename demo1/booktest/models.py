@@ -43,3 +43,44 @@ class HeroInfo(models.Model):
     def __str__(self):
         return self.name
 
+
+class Account(models.Model):
+    username = models.CharField(max_length=20)
+
+class Contact(models.Model):
+    tel = models.CharField(max_length=11)
+    acc = models.OneToOneField(Account,on_delete=models.CASCADE)
+
+
+class Host(models.Model):
+    hostname = models.CharField(max_length=20)
+
+class Application(models.Model):
+    appname = models.CharField(max_length=20)
+    hosts = models.ManyToManyField(Host)
+
+
+
+"""
+一对多 A，B   比如关系定义在 B方
+A找B  a.b_set.all()
+B找A  b.关系字段
+
+一对一 A，B   比如关系定义在B方
+A找B  a.b
+B找A  b.关系字段
+
+
+多找多  A，B  比如关系定义在B方
+插入关系
+    b.关系字段名.add(a1,a2)
+删除关系
+    b.关系字段.remove(a1,a2)
+清除所有关系
+    b.关系字段.clear()
+    
+A找B  a.b_set.all()
+B找A  b.关系字段.all()
+
+
+"""
