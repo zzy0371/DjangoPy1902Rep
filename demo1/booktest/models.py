@@ -47,6 +47,8 @@ class HeroInfo(models.Model):
 class Account(models.Model):
     username = models.CharField(max_length=20)
 
+
+
 class Contact(models.Model):
     tel = models.CharField(max_length=11)
     acc = models.OneToOneField(Account,on_delete=models.CASCADE)
@@ -58,6 +60,37 @@ class Host(models.Model):
 class Application(models.Model):
     appname = models.CharField(max_length=20)
     hosts = models.ManyToManyField(Host)
+
+class ManageExt(models.Manager):
+    def createtestmodel2(self, _title):
+        t = self.model()
+        t.title = _title
+        t.save()
+
+    def deletetestmodel2(self,_pk):
+        self.get(pk = _pk).delete()
+
+
+
+class TestModel(models.Model):
+    title = models.CharField(max_length=20)
+    # 添加字段  字段为模型管理器
+    manage = models.Manager()
+    # 应为manage2 继承了manage并且扩展了功能
+    manage2 =  ManageExt()   #models.Manager()
+    # 在模型类中封装方法，减少重复代码的编写
+    @classmethod
+    def createtestmodel(cls,_title):
+        t = cls(title = _title)
+        t.title = _title
+        t.save()
+
+
+    class Meta():
+        db_table = 'testmodel1'
+        ordering = ['-title']
+        verbose_name = "测试模型类"
+        verbose_name_plural = "测试模型类"
 
 
 

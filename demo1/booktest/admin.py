@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import BookInfo,HeroInfo
+from .models import BookInfo,HeroInfo,TestModel
 # Django自带强大的后台管理
 # Register your models here.
 
@@ -23,3 +23,5 @@ class HeroInfoAdmin(admin.ModelAdmin):
 
 admin.site.register(BookInfo,BookInfoAdmin)
 admin.site.register(HeroInfo,HeroInfoAdmin)
+
+admin.site.register(TestModel)
