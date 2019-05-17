@@ -117,3 +117,21 @@ B找A  b.关系字段.all()
 
 
 """
+
+class ManageExt(models.Manager):
+    def getteacherbyage(self, _age):
+        return self.get(age = _age)
+
+
+
+class Teacher(models.Model):
+    title = models.CharField(max_length=20)
+    age = models.IntegerField(default=20)
+    # manage1 = models.Manager()
+    objects = ManageExt()
+
+
+
+    @classmethod
+    def getteacherbyage(cls,_age):
+        return cls.objects.get(age = _age)
