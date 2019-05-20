@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>问题索引</title>
+
+    <link rel="stylesheet" href="/static/css/main.css">
+</head>
+<body>
+
+
+    <div class="container">
+        <h2>问题索引</h2>
+        <ul>
+            {% for q in questions %}
+                <li><a href="{% url 'polls:detail' q.id %}"> {{ q.title }}  </a> </li>
+            {% empty %}
+            <li>没有投票</li>
+            {% endfor %}
+
+
+        </ul>
+
+    </div>
+</body>
+</html>
