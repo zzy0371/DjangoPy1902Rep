@@ -8,12 +8,12 @@
 </head>
 <body>
 
-
+    {{ request.user }}
     <div class="container">
         <h2>问题索引</h2>
         <ul>
             {% for q in questions %}
-                <li><a href="{% url 'polls:detail' q.id %}"> {{ q.title }}  </a> </li>
+                <li>  <a href="{% url 'polls:detail' q.id %}"> {{ forloop.counter }}  {{ q.title }}  </a> </li>
             {% empty %}
             <li>没有投票</li>
             {% endfor %}
