@@ -42,6 +42,10 @@ def logout(request):
     return res
 
 
+def regist(request):
+    return HttpResponse("登录成功")
+
+
 # class Index(View):
 #     def get(self,request):
 #         questions = Question.objects.all()
