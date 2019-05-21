@@ -1,21 +1,18 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>投票展示</title>
-     <link rel="stylesheet" href="/static/css/main.css">
-</head>
-<body>
-    <div class="container">
-        <h2>投票结果</h2>
-        <ul>
-            {% for c in question.choice_set.all  %}
-            <li> {{ c.title }} --得票-- {{ c.votes }} </li>
-            {% endfor %}
-        </ul>
+{% extends 'polls/base.html' %}
+
+{% block title %}
+投票展示
+{% endblock %}
 
 
-    </div>
-    <a href="{%  url 'polls:index' %}">返回首页</a>
-</body>
-</html>
+{% block body %}
+<h2>投票结果</h2>
+<ul>
+    {% for c in question.choice_set.all %}
+    <li> {{ c.title }} --得票-- {{ c.votes }}</li>
+    {% endfor %}
+</ul>
+
+
+<a href="{%  url 'polls:index' %}">返回首页</a>
+{% endblock %}

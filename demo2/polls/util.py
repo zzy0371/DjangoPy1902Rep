@@ -5,8 +5,6 @@ def checklogin(fun):
     def check(request,*args):
         # 在cookie去用户
         # un = request.COOKIES.get('username')
-        print(request.user,'++++++')
-        print(request.user.is_authenticated)
         # 在session中取
         # un = request.session.get("username")
         # if un:

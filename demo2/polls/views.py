@@ -21,7 +21,7 @@ from django.contrib.auth import authenticate,login as lgi,logout as lgo
 
 def login(request):
     if request.method == "GET":
-        return render(request, 'polls/login.html')
+        return render(request, 'polls/login.html',{"py1902":'HelloWorld'})
     else:
         # 没有使用Django自带用户系统
         # username = request.POST.get("username")
@@ -105,7 +105,7 @@ def detail(request,id):
         c_id = request.POST["choice"]
         Choice.objects.incresevotes(c_id)
 
-        return HttpResponseRedirect('/polls/result/%s/'%(id,)).set_cookie()
+        return HttpResponseRedirect('/polls/result/%s/'%(id,))
 
     return render(request,'polls/detail.html', locals())
 
