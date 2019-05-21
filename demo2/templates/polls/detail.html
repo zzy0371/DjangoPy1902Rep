@@ -9,6 +9,7 @@
 
 <h2>{{question.title}}</h2>
 <form action="{% url 'polls:detail' question.id %}" method="post">
+    {% csrf_token %}
     <ul>
         {% for c in question.choice_set.all %}
 

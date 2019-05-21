@@ -6,12 +6,13 @@
 
 
 {% block body %}
-
+{# django默认自动转义  默认自动浏览器不解释  #}
 
 {{error}}
 {% comment %}
 <h1>登录</h1>
 <form action="{% url 'polls:login' %}" method="post">
+
     {{error}}
     <br>
     用户名:<input type="text" name="username">
@@ -40,6 +41,7 @@
         <div role="tabpanel" class="tab-pane active" id="login">
             <h3>登录</h3>
             <form class="form-horizontal" action="{% url 'polls:login' %}" method="post">
+                {% csrf_token %}
                 <div class="form-group">
                     <label for="username" class="col-sm-2 control-label">用户名：</label>
                     <div class="col-sm-10">
@@ -64,6 +66,7 @@
         <div role="tabpanel" class="tab-pane" id="regist">
             <h3>注册</h3>
             <form class="form-horizontal" action="{% url 'polls:regist' %}" method="post">
+                {% csrf_token %}
                 <div class="form-group">
                     <label for="username_regi" class="col-sm-2 control-label">用户名：</label>
                     <div class="col-sm-10">
