@@ -98,6 +98,26 @@
         </div>
     </div>
 
+
+    <br><br><br><br><br>
+
+    {% comment %}
+    <form action="{% url 'polls:login' %}" method="post">
+        {% csrf_token %}
+        {{lf}}
+        <input type="submit" value="登录">
+
+    </form>
+
+
+    <form action="#" method="post">
+        {% csrf_token %}
+        {{rf}}
+        <input type="submit" value="注册">
+    </form>
+    {% endcomment %}
+
+
 </div>
 
 

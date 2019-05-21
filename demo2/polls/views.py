@@ -4,6 +4,7 @@ from .models import Question,Choice,MyUser
 from .util import checklogin
 from django.views.generic import View
 from django.contrib.auth import authenticate,login as lgi,logout as lgo
+from .forms import LoginForm,RegisterForm
 
 
 # class Login(View):
@@ -21,7 +22,10 @@ from django.contrib.auth import authenticate,login as lgi,logout as lgo
 
 def login(request):
     if request.method == "GET":
-        return render(request, 'polls/login.html',{"py1902":'<h1>HelloWorld</h1>'})
+        # lf = LoginForm()
+        # rf = RegisterForm()
+        # return render(request, 'polls/login.html',{"lf":lf, "rf":rf})
+        return render(request, 'polls/login.html')
     else:
         # 没有使用Django自带用户系统
         # username = request.POST.get("username")
@@ -36,6 +40,7 @@ def login(request):
         # else:
         #     return render(request, 'polls/login.html', {"error": "用户名错误"})
 
+        # 使用django授权系统
         username = request.POST.get("username")
         pwd = request.POST.get("password")
         # MyUser.objects.filter(username = username, p)
@@ -46,6 +51,23 @@ def login(request):
             return redirect(reverse('polls:index'))
         else:
             return render(request, 'polls/login.html', {"error": "用户名或者密码错误"})
+
+
+        # 使用自动生成表单post
+        # lf = LoginForm(request.POST)
+        # if lf.is_valid():
+        #     username = lf.cleaned_data["username"]
+        #     pwd = lf.cleaned_data["password"]
+        #     # MyUser.objects.filter(username = username, p)
+        #     user = authenticate(request, username = username,password = pwd)
+        #     if user:
+        #         print(user)
+        #         lgi(request,user)
+        #         return redirect(reverse('polls:index'))
+        #     else:
+        #         return render(request, 'polls/login.html', {"error": "用户名或者密码错误"})
+
+
 
 
 def logout(request):
