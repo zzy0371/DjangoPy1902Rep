@@ -1,4 +1,5 @@
 {% extends 'base.html' %}
+{% load extend_fun %}
 
 {% block left %}
 
@@ -20,7 +21,9 @@
     </header>
     <div class="entry-content clearfix">
         <p>
-            {{ article.body|truncatechars:5}}
+            {# {{ article.body|truncatechars:10 }}... #}
+
+            {{ article.body|myslice:20 }}
 
         </p>
         <div class="read-more cl-effect-14">

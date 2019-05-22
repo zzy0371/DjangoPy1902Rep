@@ -1,3 +1,5 @@
+{% load extend_fun %}
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -107,15 +109,12 @@
                 <div class="widget widget-category">
                     <h3 class="widget-title">分类</h3>
                     <ul>
-                        <li>
-                            <a href="#">Django 博客教程 <span class="post-count">(13)</span></a>
-                        </li>
-                        <li>
-                            <a href="#">Python 教程 <span class="post-count">(11)</span></a>
-                        </li>
-                        <li>
-                            <a href="#">Django 用户认证 <span class="post-count">(8)</span></a>
-                        </li>
+                        {% getcategorys as categorys  %}
+                        {% for category in categorys %}
+
+                            <li><a href="#"> {{ category.title }} <span class="post-count">{{ category.article_set.count }} </span>   </a></li>
+                        {% endfor %}
+
                     </ul>
                 </div>
 
