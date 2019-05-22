@@ -1,40 +1,59 @@
 {% extends 'base.html' %}
 
 {% block left %}
-<article class="post post-1">
+
+{% if page %}
+{% for article in  page.object_list %}
+<article class="post post-{{ article.id }}">
     <header class="entry-header">
         <h1 class="entry-title">
-            <a href="{% url 'blog:detail' 10 %}">Django 博客开发入门教程：前言</a>
+            <a href="{% url 'blog:detail' article.id %}">{{ article.title }}</a>
         </h1>
         <div class="entry-meta">
-            <span class="post-category"><a href="#">Django 博客教程</a></span>
+            <span class="post-category"><a href="#">  {{ article.category.title  }} </a></span>
             <span class="post-date"><a href="#"><time class="entry-date"
-                                                      datetime="2012-11-09T23:15:57+00:00">2017年5月11日</time></a></span>
-            <span class="post-author"><a href="#">追梦人物</a></span>
-            <span class="comments-link"><a href="#">4 评论</a></span>
-            <span class="views-count"><a href="#">588 阅读</a></span>
+                                                      datetime="2012-11-09T23:15:57+00:00">{{ article.create_time }}</time></a></span>
+            <span class="post-author"><a href="#"> {{ article.auther.username }} </a></span>
+            <span class="comments-link"><a href="#">{{ article.comment_set.count }} 评论</a></span>
+            <span class="views-count"><a href="#">{{ article.views }} 阅读</a></span>
         </div>
     </header>
     <div class="entry-content clearfix">
-        <p>免费、中文、零基础，完整的项目，基于最新版 Django 1.10 和 Python 3.5。带你从零开始一步步开发属于自己的博客网站，帮助你以最快的速度掌握 Django
-            开发的技巧...</p>
+        <p>
+            {{ article.body|truncatechars:5}}
+
+        </p>
         <div class="read-more cl-effect-14">
-            <a href="#" class="more-link">继续阅读 <span class="meta-nav">→</span></a>
+            <a href="{% url 'blog:detail' article.id %}" class="more-link">继续阅读 <span class="meta-nav">→</span></a>
         </div>
     </div>
 </article>
 
+{% empty %}
+<li>没有文章对象</li>
+{% endfor %}
+{% else %}
+没有文章信息
+{% endif %}
+
+
 <div class="pagination">
     <ul>
-        <li><a href="">1</a></li>
-        <li><a href="">...</a></li>
-        <li><a href="">4</a></li>
-        <li><a href="">5</a></li>
-        <li class="current"><a href="">6</a></li>
-        <li><a href="">7</a></li>
-        <li><a href="">8</a></li>
-        <li><a href="">...</a></li>
-        <li><a href="">11</a></li>
+
+        {% if page.has_previous %}
+            <li><a href="/?page={{page.previous_page_number}}">上一页</a></li>
+        {% endif %}
+
+
+        {% for num in page.paginator.page_range  %}
+        <li><a href="/?page={{num}}"> {{ num }}  </a> </li>
+
+        {% endfor %}
+
+
+        {% if page.has_next %}
+            <li><a href="/?page={{page.next_page_number}}">下一页</a></li>
+        {% endif %}
     </ul>
 </div>
 {% endblock %}
