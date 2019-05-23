@@ -50,7 +50,12 @@
 
 
         {% for num in page.paginator.page_range  %}
-        <li><a href="{{ page.parms }}?page={{num}}"> {{ num }}  </a> </li>
+        {% if num == page.number %}
+            <li><a class="text-danger" href="{{ page.parms }}?page={{num}}"> {{ num }}  </a> </li>
+        {% else %}
+            <li><a class="text-primary" href="{{ page.parms }}?page={{num}}"> {{ num }}  </a> </li>
+        {% endif %}
+
 
         {% endfor %}
 

@@ -5,6 +5,9 @@ from .models import Article,Category,Tag
 from django.core.paginator import Paginator
 import markdown
 from comments.forms import CommentForm
+from django.views.generic import View
+from .forms import ContactForm
+
 # Create your views here.
 
 def index(request):
@@ -13,7 +16,7 @@ def index(request):
     # 得到所有文章
     articles = Article.objects.all().order_by("-views")
 
-    paginator = Paginator(articles,1)
+    paginator = Paginator(articles,2)
     # 传入页码得到一个页面   page包含所有信息
     page = paginator.get_page(pagenum)
     page.parms = "/"
@@ -81,6 +84,19 @@ def tag(request,id):
     page = paginator.get_page(pagenum)
     page.parms = "/tag/%s/"%(id,)
     return render(request, 'index.html', {"page": page})
+
+class Contacts(View):
+    def get(self,request):
+        cf = ContactForm()
+        return render(request, 'contact.html',locals())
+    def post(self,request):
+        cf = ContactForm(request.POST)
+        cf.save()
+        cf = ContactForm()
+        return render(request, 'contact.html', {"info":'成功',"cf":cf})
+
+
+
 
 
 
