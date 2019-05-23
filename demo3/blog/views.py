@@ -4,6 +4,7 @@ from .models import Article
 #  Paginator  Page
 from django.core.paginator import Paginator
 import markdown
+from comments.forms import CommentForm
 # Create your views here.
 
 def index(request):
@@ -41,4 +42,5 @@ def detail(request, id):
 
     article.toc = mk.toc
 
+    cf = CommentForm()
     return render(request,'single.html', locals())

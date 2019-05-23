@@ -109,7 +109,7 @@
                 <div class="widget widget-category">
                     <h3 class="widget-title">分类</h3>
                     <ul>
-                        {% getcategorys as categorys  %}
+                        {% getcategorys  as categorys  %}
                         {% for category in categorys %}
 
                             <li><a href="#"> {{ category.title }} <span class="post-count">{{ category.article_set.count }} </span>   </a></li>
