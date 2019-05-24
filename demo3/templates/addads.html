@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>添加轮播图</title>
+</head>
+<body>
+    <h2>添加轮播图</h2>
+
+    <form action="{% url 'blog:addads' %}" method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        选择轮播图: <input type="file" name="img">
+        <br>
+        添加描述: <input type="text" name="desc">
+        <br>
+        <input type="submit" value="提交">
+
+    </form>
+</body>
+</html>

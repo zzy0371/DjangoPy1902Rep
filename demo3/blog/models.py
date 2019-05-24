@@ -54,3 +54,15 @@ class MessageInfo(models.Model):
         return self.subject
 
 
+class Ads(models.Model):
+    img = models.ImageField(upload_to="ads",verbose_name="广告图")
+    desc = models.CharField(max_length=20, verbose_name="广告描述")
+    def __str__(self):
+        return self.desc
+
+    class Meta():
+        verbose_name = "轮播图"
+        verbose_name_plural = verbose_name
+
+
+

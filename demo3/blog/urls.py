@@ -10,5 +10,6 @@ urlpatterns = [
     url(r'^tag/(\d+)/$', views.tag,name='tag'),
     url(r'^rss/$',feed.BlogFeed(),name='rss'),
     url(r'^contactus/$',views.Contacts.as_view(),name='contactus'),
+    url(r'^addads/$',views.Ads.as_view(),name='addads'),
     url(r'^$', views.index, name='index'),
 ]
