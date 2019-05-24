@@ -7,7 +7,8 @@ import markdown
 from comments.forms import CommentForm
 from django.views.generic import View
 from .forms import ContactForm
-
+from django.core.mail import send_mail,send_mass_mail
+from django.conf import settings
 # Create your views here.
 
 def index(request):
@@ -90,6 +91,15 @@ class Contacts(View):
         cf = ContactForm()
         return render(request, 'contact.html',locals())
     def post(self,request):
+        # 向HR发送邮件
+        try:
+            send_mail("测试邮件", "请点击  <a href='http://127.0.0.1:8000/'>首页</a>", settings.DEFAULT_FROM_EMAIL, ["zhangzhaoyu@qikux.com", "496575233@qq.com"])
+            # send_mass_mail((("测试邮件1", "邮件1", settings.DEFAULT_FROM_EMAIL, ["zhangzhaoyu@qikux.com", "496575233@qq.com"]),
+            #                ("测试邮件2", "邮件2", settings.DEFAULT_FROM_EMAIL, [ "496575233@qq.com"]),
+            #                ("测试邮件3", "邮件3", settings.DEFAULT_FROM_EMAIL, ["zhangzhaoyu@qikux.com"])))
+        except Exception as e:
+            print(e)
+
         cf = ContactForm(request.POST)
         cf.save()
         cf = ContactForm()
