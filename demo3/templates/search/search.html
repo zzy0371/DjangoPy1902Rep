@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title> 搜索结果页面 </title>
+</head>
+<body>
+    <h2>搜索关键字为： {{ query }}</h2>
+
+    {% if query %}
+        {% if page %}
+            {% for article in page.object_list %}
+                <li><a href="{% url 'blog:detail' article.object.id %}">{{ article.object.title }}</a> </li>
+            {% empty %}
+                <li>没有对象</li>
+            {% endfor %}
+    
+    
+    
+        {% else %}
+            没有数据
+        {% endif %}
+
+
+    {% endif %}
+
+
+
+</body>
+</html>

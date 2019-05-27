@@ -9,8 +9,10 @@ from django.views.generic import View
 from .forms import ContactForm
 from django.core.mail import send_mail,send_mass_mail
 from django.conf import settings
+from django.views.decorators.cache import cache_page
 # Create your views here.
 
+# @cache_page(timeout=60*2)
 def index(request):
     pagenum = request.GET.get("page")
     pagenum = 1 if pagenum==None  else pagenum
