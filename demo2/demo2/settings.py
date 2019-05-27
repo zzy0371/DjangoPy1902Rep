@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'polls',
 ]
 
+# 中间件  用于改变输入（request）输出（response）de 插件（模块）
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
@@ -51,6 +52,9 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+
+    # 如果需要实现通用功能 可以通过编写特定功能的中间件
+    # 'demo2.simplemidelware.SimpleMiddleWare',
 ]
 
 ROOT_URLCONF = 'demo2.urls'

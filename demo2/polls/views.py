@@ -9,6 +9,7 @@ from django.core.mail import send_mail,EmailMultiAlternatives
 from django.conf import settings
 from PIL import Image,ImageDraw,ImageFont
 import random,io
+from django.core.cache import cache
 # 引入序列化加密并且有效期信息
 from itsdangerous import TimedJSONWebSignatureSerializer as Serializer,SignatureExpired
 # class Login(View):
@@ -49,7 +50,9 @@ def login(request):
         pwd = request.POST.get("password")
         verifycode = request.POST.get("verify")
 
-        if verifycode == request.session.get("verifycode"):
+        if verifycode == cache.get("verifycode"):
+        # if verifycode == request.session.get("verifycode"):
+
             # MyUser.objects.filter(username = username, p)
             # user = authenticate(request, username = username,password = pwd)
             user = get_object_or_404(MyUser, username=username)
@@ -197,7 +200,12 @@ def verify(request):
 
     # 释放画笔
     del draw
-    request.session['verifycode'] = rand_str
+    # 存进session
+    # request.session['verifycode'] = rand_str
+
+    cache.set("verifycode",rand_str, 500)
+
+
     f = io.BytesIO()
     im.save(f, 'png')
     # 将内存中的图片数据返回给客户端，MIME类型为图片png
